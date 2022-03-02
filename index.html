@@ -1,0 +1,192 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css" type="text/css" />
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js">
+    </script>
+    <script type="text/javascript" src="calcutrice.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> </head>
+
+<body>
+    <input type="file" id="file">
+    <table id='calculatrice'>
+        <tr>
+            <th>
+                <input type="textarea" id="text"> </th>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value='1/x' onClick="Inverse()"> </td>
+            <td>
+                <input type="button" value='x²' onclick="Square()"> </td>
+            <td>
+                <input type="button" value='√x' onclick="Racine()"> </td>
+            <td>
+                <input type="button" value='^' onclick="Click('^')"> </td>
+            <td>
+                <input type="button" value='/' onClick="Click('/')"> </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value='7' onClick="Click(7)"> </td>
+            <td>
+                <input type="button" value='8' onClick="Click(8)"> </td>
+            <td>
+                <input type="button" value='9' onClick="Click(9)"> </td>
+            <td>
+                <input type="button" value='(' onClick="Click('(')"> </td>
+            <td>
+                <input type="button" value='x' onClick="Click('x')"> </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value='4' onClick="Click(4)"> </td>
+            <td>
+                <input type="button" value='5' onClick="Click(5)"> </td>
+            <td>
+                <input type="button" value='6' onClick="Click(6)"> </td>
+            <td>
+                <input type="button" value=')' onClick="Click(')')"> </td>
+            <td>
+                <input type="button" value='-' onClick="Click('-')"> </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value='1' onClick="Click(1)"> </td>
+            <td>
+                <input type="button" value='2' onClick="Click(2)"> </td>
+            <td>
+                <input type="button" value='3' onClick="Click(3)"> </td>
+            <td>
+                <input type="button" value='()' onClick="Parent()"> </td>
+            <td>
+                <input type="button" value='+' onClick="Click('+')"> </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value='±' onClick="Signe()"> </td>
+            <td>
+                <input type="button" value='0' onClick="Click(0)"> </td>
+            <td>
+                <input type="button" value=',' onClick="Click('.')"> </td>
+            <td>
+                <input type="button" value='CC' onClick="Reset()"> </td>
+            <td>
+                <input type="button" value='=' onClick="Calcul()"> </td>
+        </tr>
+    </table>
+</body>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+    document.getElementById('file').onchange = function (event) {
+        var file = event.target.files[0];
+        console.log(file);
+        var fileReader = new FileReader();
+        var code = false;
+        var Total = 0;
+        var Flag = true;
+        var nbM = 0;
+        let arround = document.createElement('div');
+        arround.id = 'arround';
+        arround.innerHTML = "Notes";
+        document.body.appendChild(arround);
+        let check = document.createElement('input');
+        check.type = 'checkbox';
+        check.id = 'A';
+        arround.appendChild(check);
+        let Notes = document.createElement('div');
+        Notes.id = 'Notes';
+        arround.appendChild(Notes);
+        fileReader.onload = function () {
+            var typedarray = new Uint8Array(this.result);
+            console.log(typedarray);
+            const loadingTask = pdfjsLib.getDocument(typedarray);
+            loadingTask.promise.then(pdf => {
+                const numPages = pdf.numPages;
+                var val;
+                var key = '';
+                let matiere;
+                let note;
+                var moy;
+                for (var i = 1; i <= numPages; i++) {
+                    let Page = i;
+                    pdf.getPage(i).then(function (page) {
+                        var dic = [];
+                        page.getTextContent().then(function (content) {
+                            var taille = content.items.length;
+                            for (var j = 1; j < taille - 1; j++) {
+                                var str = content.items[j].str;
+                                if (str.slice(0, 4) == "Code") {
+                                    if (key != '') {
+                                        if (moy != 0) {
+                                            Total += parseFloat(moy/val.length);
+                                             console.log(Total);
+                                            val.push(Math.round(parseFloat(moy / val.length)*1000)/1000);
+                                        }
+                                        dic.push([key, val]);
+                                    }
+                                    moy = 0;
+                                    val = [];
+                                    key = str.slice(18, str.length);
+                                }
+                                else if ((str.slice(0, 1) == "1" ||
+                                         str.slice(0, 1) == "2" ||
+                                         str.slice(0, 1) == "3" ||
+                                         str.slice(0, 1) == "4" ||
+                                         str.slice(0, 1) == "5" ||
+                                         str.slice(0, 1) == "6" ||
+                                         str.slice(0, 1) == "7" ||
+                                         str.slice(0, 1) == "8" ||
+                                         str.slice(0, 1) == "9") && str.slice(2,3)!="s"){
+                                    console.log(str.slice(2,3))
+                                    val.push([str.slice(0, 6), str.slice(13, 19)]);
+                                    console.log(str.slice(0, 6)+'  '+ str.slice(13, 20))
+                                    moy += parseFloat(val[val.length - 1]);
+                                }
+                            }
+                            for (i in dic) {
+                                matiere = document.createElement('table');
+                                matiere.innerHTML = dic[i][0];
+                                Notes.appendChild(matiere);
+                                if (dic[i][1].length == 0) {
+                                    matiere.className = "hidden";
+                                }
+                                else{
+                                    nbM+=1;
+                                }
+                                for (j in dic[i][1]) {
+                                    note = document.createElement('tr');
+                                    note.innerHTML = dic[i][1][j];
+                                    if (dic[i][1][j][0] != undefined) {
+                                        note.value = dic[i][1][j][0];
+                                    }
+                                    else {
+                                        note.value = dic[i][1][j];
+                                    }
+                                    note.onclick = function () {
+                                        Click(this.value);
+                                    };
+                                    matiere.appendChild(note);
+                                }
+                                console.log(Page,numPages);
+                                if (Page == numPages && Flag){
+                                    Flag=false;
+                                    let moyenne = document.createElement('table');
+                                    moyenne.innerHTML = "Moyenne";
+                                    let note = document.createElement('tr');
+                                    note.innerHTML= Math.round(Total/nbM*1000)/1000;
+                                    Notes.appendChild(moyenne);
+                                    moyenne.appendChild(note);
+                                }
+                            }
+                        });
+                    });
+
+                }
+            });
+        };
+        
+        fileReader.readAsArrayBuffer(file);
+        
+    }
+</script>
