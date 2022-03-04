@@ -13,12 +13,15 @@ nav{
     width:100vw;
     height:auto;
     background:linear-gradient(0deg, rgba(0,141,179,1) 0%, rgba(0,175,218,1) 100%);
+    display:flex;
 }
 
 nav > a{
     text-decoration:none;
-    position:absolute;
+    position:relative;
+    height:16px;
     margin-top:20px;
+    margin-right:5px;
     color:var(--font);
     padding:2px;
     border-color:var(--font);
