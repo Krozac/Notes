@@ -1,29 +1,56 @@
-
+:root{
+    --detail-color: linear-gradient(90deg, rgba(0,141,179,1) 0%, rgba(0,175,218,1) 100%);
+    --grey:#E4E3E3;
+    --blue:rgba(0,141,179,1);
+    --font:#6A6761;
+}
 
 body {
-    background: rgb(32, 32, 35);
-    color: #F8F8F2;
+    background: white;
+    color: var(--font);
+}
+nav{
+    width:100vw;
+    height:auto;
+    background:linear-gradient(0deg, rgba(0,141,179,1) 0%, rgba(0,175,218,1) 100%);
+}
+
+nav > a{
+    text-decoration:none;
+    position:absolute;
+    margin-top:20px;
+    color:var(--font);
+    padding:2px;
+    border-color:var(--font);
+    border-left:solid 1px;
+    border-right:solid 1px;
+}
+a:hover{
+    color:#FF6300;
+    border-color: #FF6300;
 }
 
 #arround {
     font-size: 2em;
     font-weight: bold;
-    background: rgb(29, 30, 40);
+    background: white;
     padding: 20px;
+    padding-top:0;
     margin: auto;
     width: 55vw;
     margin-top: 15vh;
-    border-top: solid 4px #BB86FC;
+    border-top: solid 8px var(--blue);
     box-shadow: rgb(44, 47, 51) 0px 0px 40px;
     height: 400px;
     border-radius: 5px;
+
 }
 
 #Notes {
     overflow-x: hidden;
     font-size: 2em;
     font-weight: bold;
-    background: rgb(29, 30, 40);
+    background: white;
     padding: 20px;
     margin: auto;
     width: 50vw;
@@ -34,7 +61,7 @@ body {
 
 table {
     display: block;
-    background: rgb(44, 47, 51);
+    background: var(--grey);
     width: 43vw;
     min-height: 50px;
     text-align: center;
@@ -43,16 +70,18 @@ table {
     margin-top: 10;
     font-weight: bold;
     box-shadow: black 0px 0px 5px;
-    border-top: solid 1px #BB86FC;
+    border-top: solid 10px var(--detail-color);
     border-radius: 3px;
 }
 
+table:hover{
+    color:#0056b3;
+}
 tr {
     font-weight: normal;
-    border: none;
     border-collapse: collapse;
     display: block;
-    background: #BB86FC;
+    background: var(--detail-color);
     margin: 0;
     width: 10vw;
     margin: auto;
@@ -84,6 +113,7 @@ tr:active ~input[type='textarea'] {
 
 
 #calculatrice {
+    background: var(--detail-color);
     width: 163;
     margin: 0 81vw;
     position: sticky;
@@ -103,9 +133,14 @@ tr:active ~input[type='textarea'] {
 }
 
 #calculatrice input[type='button'] {
-    background: #BB86FC;
+    background: var(--grey);
     width: 30px;
     height: 20px;
+    border:solid 1px var(--blue);
+}
+
+#calculatrice input[type='button']:hover {
+    opacity:0.7;
 }
 
 #calculatrice input[type='textarea'] {
@@ -127,10 +162,12 @@ tr:active ~input[type='textarea'] {
     }
     #arround {
         margin-left:0;
-        width: 90vw;
+        width: 100vw;
+        padding:0;
     }
     #Notes {
-        margin: auto;
+        margin: 0;
+        margin-left:5px;
         width: 85vw;
     }
     table {
