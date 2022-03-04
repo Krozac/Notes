@@ -1,3 +1,5 @@
+
+
 body {
     background: rgb(32, 32, 35);
     color: #F8F8F2;
@@ -79,32 +81,10 @@ tr:active ~input[type='textarea'] {
     display: block;
 }
 
-@media screen and (max-width: 1000px) {
-    #A {
-        margin-left: 40vw;
-        width: 90vw;
-    }
-    #arround {
-        margin: auto;
-        width: 90vw;
-    }
-    #Notes {
-        margin: auto;
-        width: 85vw;
-    }
-    table {
-        width: 80vw;
-        margin-left: auto;
-        ;
-    }
-    tr {
-        width: 22vw;
-    }
-}
+
 
 #calculatrice {
     width: 163;
-    position: sticky;
     margin: 0 81vw;
     position: sticky;
     top: 5px;
@@ -131,4 +111,38 @@ tr:active ~input[type='textarea'] {
 #calculatrice input[type='textarea'] {
     width: 156px;
     height: 25px;
+}
+
+
+@media screen and (max-width: 1000px) {
+    html {
+    overflow: hidden;
+    }
+    body{
+        margin:0;
+    }
+    #A {
+        margin-left: 90vw;
+        margin-right:0;
+    }
+    #arround {
+        margin-left:0;
+        width: 90vw;
+    }
+    #Notes {
+        margin: auto;
+        width: 85vw;
+    }
+    table {
+        width: 80vw;
+        margin-left: auto;
+        ;
+    }
+    tr {
+        width: 40vw;
+    }
+    #calculatrice{
+        margin: auto;
+        position:relative;
+    }
 }
