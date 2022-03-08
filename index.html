@@ -8,9 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" /> </head>
 
 <body>
-    <nav><img title="Portail UNS" alt="" src="img/mainlogo.gif" border="0" onclick = "return show('page1','page2','page3')" ><a onclick = "return show('page2','page1','page3')">Intracursus</a><a onclick = "return show('page3','page1','page2')">Satelys</a></nav>
+    <nav><img title="Portail UNS" alt="" src="img/mainlogo.gif" border="0" onclick = "return show('page1','page2','page3','page4')" ><a onclick = "return show('page2','page1','page2','page4')">Notes</a><a onclick = "return show('page3','page1','page2','page4')">Intracursus</a><a onclick = "return show('page4','page1','page2','page3')">Satelys</a></nav>
     <input type="file" id="file">
-    <div id = "page1">
+    <div id ="page1">
+        <iframe src = "https://planier.unice.fr/BV/Mes_Services-etu/home.php"></iframe>
+    </div>
+    <div id = "page2" style="display:none">
         <table id='calculatrice'>
             <tr>
                 <th>
@@ -78,14 +81,15 @@
             </tr>
         </table>
         </div>
-        <div id = "page2" style="display:none"><iframe src = "https://intracursus.unice.fr/uns/"></iframe></div>
-        <div id = "page3" style="display:none"><iframe src = "https://iut-gpu-personnels.unice.fr/sat/index.php"></iframe></div>
+        <div id = "page3" style="display:none"><iframe src = "https://intracursus.unice.fr/uns/"></iframe></div>
+        <div id = "page4" style="display:none"><iframe src = "https://iut-gpu-personnels.unice.fr/sat/index.php"></iframe></div>
 </body>
 <script>
-    function show(shown,hidden1,hidden2){
+    function show(shown,hidden1,hidden2,hidden3){
         console.log(shown);
         document.getElementById(hidden1).style.display='none';
         document.getElementById(hidden2).style.display='none';
+        document.getElementById(hidden3).style.display='none';
         document.getElementById(shown).style.display='block';
     }
 </script>
@@ -100,7 +104,7 @@
         var coef = 0;
         var Flag = true;
         var nbM = 0;
-        let page = document.getElementById('page1');
+        let page = document.getElementById('page2');
         console.log(page);
         let arround = document.createElement('div');
         arround.id = 'arround';
