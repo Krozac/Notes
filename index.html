@@ -8,75 +8,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" /> </head>
 
 <body>
-    <nav><img title="Portail UNS" alt="" src="img/mainlogo.gif" border="0"><a target="_blank" href="https://intracursus.unice.fr/ic/etudiant/ic-etudiant-inscrit.php">Intracursus</a><a href="https://iut-gpu-personnels.unice.fr/sat/index.php" target="_blank">Satelys</a></nav>
+    <nav><img title="Portail UNS" alt="" src="img/mainlogo.gif" border="0" onclick = "return show('page1','page2','page3')" ><a onclick = "return show('page2','page1','page3')">Intracursus</a><a onclick = "return show('page3','page1','page2')">Satelys</a></nav>
     <input type="file" id="file">
-    <table id='calculatrice'>
-        <tr>
-            <th>
-                <input type="textarea" id="text"> </th>
-        </tr>
-        <tr>
-            <td>
-                <input type="button" value='1/x' onClick="Inverse()"> </td>
-            <td>
-                <input type="button" value='x²' onclick="Square()"> </td>
-            <td>
-                <input type="button" value='√x' onclick="Racine()"> </td>
-            <td>
-                <input type="button" value='^' onclick="Click('^')"> </td>
-            <td>
-                <input type="button" value='/' onClick="Click('/')"> </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="button" value='7' onClick="Click(7)"> </td>
-            <td>
-                <input type="button" value='8' onClick="Click(8)"> </td>
-            <td>
-                <input type="button" value='9' onClick="Click(9)"> </td>
-            <td>
-                <input type="button" value='(' onClick="Click('(')"> </td>
-            <td>
-                <input type="button" value='x' onClick="Click('x')"> </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="button" value='4' onClick="Click(4)"> </td>
-            <td>
-                <input type="button" value='5' onClick="Click(5)"> </td>
-            <td>
-                <input type="button" value='6' onClick="Click(6)"> </td>
-            <td>
-                <input type="button" value=')' onClick="Click(')')"> </td>
-            <td>
-                <input type="button" value='-' onClick="Click('-')"> </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="button" value='1' onClick="Click(1)"> </td>
-            <td>
-                <input type="button" value='2' onClick="Click(2)"> </td>
-            <td>
-                <input type="button" value='3' onClick="Click(3)"> </td>
-            <td>
-                <input type="button" value='()' onClick="Parent()"> </td>
-            <td>
-                <input type="button" value='+' onClick="Click('+')"> </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="button" value='±' onClick="Signe()"> </td>
-            <td>
-                <input type="button" value='0' onClick="Click(0)"> </td>
-            <td>
-                <input type="button" value=',' onClick="Click('.')"> </td>
-            <td>
-                <input type="button" value='CC' onClick="Reset()"> </td>
-            <td>
-                <input type="button" value='=' onClick="Calcul()"> </td>
-        </tr>
-    </table>
+    <div id = "page1">
+        <table id='calculatrice'>
+            <tr>
+                <th>
+                    <input type="textarea" id="text"> </th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value='1/x' onClick="Inverse()"> </td>
+                <td>
+                    <input type="button" value='x²' onclick="Square()"> </td>
+                <td>
+                    <input type="button" value='√x' onclick="Racine()"> </td>
+                <td>
+                    <input type="button" value='^' onclick="Click('^')"> </td>
+                <td>
+                    <input type="button" value='/' onClick="Click('/')"> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value='7' onClick="Click(7)"> </td>
+                <td>
+                    <input type="button" value='8' onClick="Click(8)"> </td>
+                <td>
+                    <input type="button" value='9' onClick="Click(9)"> </td>
+                <td>
+                    <input type="button" value='(' onClick="Click('(')"> </td>
+                <td>
+                    <input type="button" value='x' onClick="Click('x')"> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value='4' onClick="Click(4)"> </td>
+                <td>
+                    <input type="button" value='5' onClick="Click(5)"> </td>
+                <td>
+                    <input type="button" value='6' onClick="Click(6)"> </td>
+                <td>
+                    <input type="button" value=')' onClick="Click(')')"> </td>
+                <td>
+                    <input type="button" value='-' onClick="Click('-')"> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value='1' onClick="Click(1)"> </td>
+                <td>
+                    <input type="button" value='2' onClick="Click(2)"> </td>
+                <td>
+                    <input type="button" value='3' onClick="Click(3)"> </td>
+                <td>
+                    <input type="button" value='()' onClick="Parent()"> </td>
+                <td>
+                    <input type="button" value='+' onClick="Click('+')"> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value='±' onClick="Signe()"> </td>
+                <td>
+                    <input type="button" value='0' onClick="Click(0)"> </td>
+                <td>
+                    <input type="button" value=',' onClick="Click('.')"> </td>
+                <td>
+                    <input type="button" value='CC' onClick="Reset()"> </td>
+                <td>
+                    <input type="button" value='=' onClick="Calcul()"> </td>
+            </tr>
+        </table>
+        </div>
+        <div id = "page2" style="display:none"><iframe src = "https://intracursus.unice.fr/uns/"></iframe></div>
+        <div id = "page3" style="display:none"><iframe src = "https://iut-gpu-personnels.unice.fr/sat/index.php"></iframe></div>
 </body>
+<script>
+    function show(shown,hidden1,hidden2){
+        console.log(shown);
+        document.getElementById(hidden1).style.display='none';
+        document.getElementById(hidden2).style.display='none';
+        document.getElementById(shown).style.display='block';
+    }
+</script>
 <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
     document.getElementById('file').onchange = function (event) {
@@ -88,10 +100,12 @@
         var coef = 0;
         var Flag = true;
         var nbM = 0;
+        let page = document.getElementById('page1');
+        console.log(page);
         let arround = document.createElement('div');
         arround.id = 'arround';
         arround.innerHTML = "Notes";
-        document.body.appendChild(arround);
+        page.appendChild(arround);
         let check = document.createElement('input');
         check.type = 'checkbox';
         check.id = 'A';
